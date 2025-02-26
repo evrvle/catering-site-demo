@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GourmetCatering - Изысканный кейтеринг для любого события</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>GourmetCatering</h1>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="active">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Изысканные блюда для особых событий</h2>
+                    <p>Мы создаем незабываемые гастрономические впечатления для любого мероприятия</p>
+                    <div class="hero-buttons">
+                        <a href="#menu" class="btn btn-primary">Посмотреть меню</a>
+                        <a href="#contact" class="btn btn-secondary">Связаться с нами</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>О нас</h2>
+                <p>Уникальный подход к каждому мероприятию</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>GourmetCatering – это команда профессионалов с многолетним опытом в организации питания для мероприятий любого формата. Мы специализируемся на создании изысканных блюд из свежих, сезонных продуктов, уделяя особое внимание деталям.</p>
+                    <p>Наша миссия – превращать обыкновенные встречи в незабываемые события, где каждое блюдо становится произведением искусства, а безупречный сервис дополняет гастрономическое удовольствие.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Свежие ингредиенты</h3>
+                            <p>Мы используем только сезонные и локальные продукты высочайшего качества.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-utensils"></i>
+                            <h3>Авторская кухня</h3>
+                            <p>Каждое меню разрабатывается индивидуально под ваше мероприятие.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h3>Профессиональная команда</h3>
+                            <p>Наши повара и официанты имеют многолетний опыт работы.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Команда шеф-поваров GourmetCatering">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Наше меню</h2>
+                <p>Изысканные блюда для любого события</p>
+            </div>
+            
+            <div class="menu-filter">
+                <button class="filter-btn active" data-filter="all">Все блюда</button>
+                <button class="filter-btn" data-filter="appetizers">Закуски</button>
+                <button class="filter-btn" data-filter="main">Основные блюда</button>
+                <button class="filter-btn" data-filter="desserts">Десерты</button>
+                <button class="filter-btn" data-filter="vegan">Вегетарианские</button>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Закуски -->
+                <div class="menu-item appetizers">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1541014741259-de529411b96a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="Тартар из лосося">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Тартар из лосося</h3>
+                        <p>Свежий лосось, авокадо, красный лук, каперсы, заправка на основе лимона и оливкового масла</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item appetizers vegan">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1626200729363-4ee7ab290501?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80" alt="Брускетта с авокадо">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Брускетта с авокадо</h3>
+                        <p>Хрустящий багет, спелое авокадо, томаты черри, руккола, бальзамический крем</p>
+                    </div>
+                </div>
+                
+                <!-- Основные блюда -->
+                <div class="menu-item main">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80" alt="Филе миньон">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Филе миньон</h3>
+                        <p>Нежнейшая говяжья вырезка, трюфельное пюре, сезонные овощи, соус демиглас</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item main vegan">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Ризотто с белыми грибами">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Ризотто с белыми грибами</h3>
+                        <p>Кремовый рис арборио, белые грибы, трюфельное масло, пармезан</p>
+                    </div>
+                </div>
+                
+                <!-- Десерты -->
+                <div class="menu-item desserts">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Шоколадный фондан">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Шоколадный фондан</h3>
+                        <p>Теплый шоколадный кекс с жидкой начинкой, ванильное мороженое, ягодный соус</p>
+                    </div>
+                </div>
+                
+                <div class="menu-item desserts vegan">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1610450949065-1f2841536c64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Кокосовый панна-котта">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Кокосовый панна-котта</h3>
+                        <p>Нежный кокосовый десерт, манговое пюре, свежие ягоды, мятный соус</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Галерея</h2>
+                <p>Наши блюда и мероприятия</p>
+            </div>
+            
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Банкет">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546833998-877b37c2e5c6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Фуршет">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519654793190-2e8a4806f1f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Десертный стол">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1604122409233-7ebbbafac3dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1274&q=80" alt="Свадебный банкет">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Приготовление блюд">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1482275548304-a58859dc31b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Корпоративное мероприятие">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Отзывы</h2>
+                <p>Что говорят наши клиенты</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"GourmetCatering превзошел все наши ожидания! Гости были в восторге от каждого блюда, а сервис был безупречен. Однозначно рекомендую для любого мероприятия."</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Анна Петрова</h3>
+                        <p>Свадебный банкет</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Мы заказывали кейтеринг для корпоративного мероприятия, и все прошло идеально. Профессиональная команда, потрясающие блюда и внимание к деталям – вот что отличает GourmetCatering."</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Иван Сергеев</h3>
+                        <p>Корпоративное мероприятие</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Не могу не отметить креативный подход к составлению меню и презентации блюд. Каждое блюдо было не только вкусным, но и выглядело как произведение искусства!"</p>
+                    </div>
+                    <div class="testimonial-info">
+                        <h3>Екатерина Смирнова</h3>
+                        <p>День рождения</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Контакты</h2>
+                <p>Свяжитесь с нами для организации вашего мероприятия</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Адрес</h3>
+                        <p>ул. Гастрономическая, 42, Москва</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Телефон</h3>
+                        <p>+7 (495) 123-45-67</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>info@gourmetcatering.ru</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" id="eventDate" name="eventDate" placeholder="Дата мероприятия">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" id="guests" name="guests" placeholder="Количество гостей" min="1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Ваше сообщение" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить запрос</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>GourmetCatering</h3>
+                    <p>Изысканные блюда для особых событий</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#gallery">Галерея</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 GourmetCatering. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
