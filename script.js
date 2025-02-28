@@ -89,19 +89,43 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const eventDate = document.getElementById('eventDate').value;
-            const guests = document.getElementById('guests').value;
-            const message = document.getElementById('message').value;
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                employees: document.getElementById('employees').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Validate form
+            if (!formData.name || !formData.company || !formData.email || !formData.phone || !formData.service) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
             
             // Here you would normally send the data to a server
             // For demonstration, we'll just show an alert
-            alert(`Спасибо, ${name}! Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.`);
+            alert(`Спасибо за заявку, ${formData.name}! Мы свяжемся с вами в ближайшее время для обсуждения организации питания в компании "${formData.company}".`);
             
             // Reset form
             contactForm.reset();
+        });
+    }
+    
+    // Phone number formatting
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value[0] === '7' || value[0] === '8') {
+                    value = value.substring(1);
+                }
+                const matches = value.match(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                e.target.value = !matches[2] ? '+7 (' + matches[1] : '+7 (' + matches[1] + ') ' + matches[2] + (matches[3] ? '-' + matches[3] : '') + (matches[4] ? '-' + matches[4] : '');
+            }
         });
     }
     
@@ -162,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Simple animation on scroll
     function revealOnScroll() {
-        const elements = document.querySelectorAll('.section-header, .about-content, .menu-item, .gallery-item, .testimonial, .contact-content');
+        const elements = document.querySelectorAll('.section-header, .about-content, .service-card, .menu-item, .faq-item, .testimonial, .contact-content');
         
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
@@ -178,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add CSS for animation
     const style = document.createElement('style');
     style.innerHTML = `
-        .section-header, .about-content, .menu-item, .gallery-item, .testimonial, .contact-content {
+        .section-header, .about-content, .service-card, .menu-item, .faq-item, .testimonial, .contact-content {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s ease, transform 1s ease;
