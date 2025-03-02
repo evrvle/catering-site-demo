@@ -116,7 +116,7 @@ img {
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--primary-color);
+    color: #fff;
     border: 2px solid var(--primary-color);
 }
 
