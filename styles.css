@@ -407,60 +407,50 @@ img {
 }
 
 /* Testimonials Section */
+.testimonials {
+    background-color: #f7fafc;
+}
+
 .testimonials-slider {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
 .testimonial {
-    flex: 1;
-    min-width: 300px;
-    max-width: 400px;
-    background-color: var(--light-color);
-    border-radius: 10px;
-    padding: 30px;
+    flex: 1 1 350px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
     box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.testimonial:hover {
-    transform: translateY(-10px);
 }
 
 .testimonial-content {
     position: relative;
-    padding-top: 20px;
+    padding-left: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .testimonial-content::before {
-    content: '\201C';
-    font-family: Georgia, serif;
+    content: "\201C";
     position: absolute;
-    top: -10px;
-    left: -15px;
-    font-size: 5rem;
-    color: var(--primary-color);
+    left: -0.5rem;
+    top: -1rem;
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: var(--secondary-color);
     opacity: 0.3;
 }
 
-.testimonial-info {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
 .testimonial-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
 }
 
 .testimonial-info p {
-    color: #777;
+    color: var(--text-color);
     font-size: 0.9rem;
-    margin: 0;
 }
 
 /* Contact Section */
@@ -746,6 +736,42 @@ textarea {
     background-color: var(--secondary-color);
 }
 
+/* Map Container */
+.map-container {
+    margin-top: 30px;
+}
+
+.map-container h3 {
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.map-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+}
+
+.map-description {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.map-description i {
+    color: var(--primary-color);
+    margin-right: 8px;
+}
+
+.map-description small {
+    display: block;
+    color: #666;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 991px) {
     .section {
@@ -842,5 +868,13 @@ textarea {
         position: static;
         display: inline-block;
         margin-top: 10px;
+    }
+    
+    .tour-content {
+        flex-direction: column-reverse;
+    }
+    
+    .tour-frame-wrapper {
+        margin-bottom: 1.5rem;
     }
 }

@@ -1,4 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'dark';
+    }
+    
+    // Theme toggle handler
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Initialize Yandex Map
+    ymaps.ready(function () {
+        const map = new ymaps.Map('map', {
+            center: [56.129373, 40.398272], // Координаты ул. Лакина, 4
+            zoom: 16
+        });
+
+        // Add marker
+        const placemark = new ymaps.Placemark([56.129373, 40.398272], {
+            balloonContent: 'Столовая РТС<br>ул. Лакина, 4',
+            hintContent: 'Столовая РТС'
+        }, {
+            preset: 'islands#blueIcon'
+        });
+
+        map.geoObjects.add(placemark);
+        map.behaviors.disable('scrollZoom');
+        
+        // Enable zoom on click
+        map.events.add('click', function() {
+            map.behaviors.enable('scrollZoom');
+        });
+    });
+
     // Mobile Menu Toggle
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
