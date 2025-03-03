@@ -31,6 +31,7 @@
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#menu">Меню</a></li>
                     <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#" id="feedbackBtn" class="feedback-btn">Обратная связь</a></li>
                 </ul>
             </div>
         </nav>
@@ -303,15 +304,19 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                            <div class="error-message" id="nameError"></div>
                         </div>
                         <div class="form-group">
                             <input type="text" id="company" name="company" placeholder="Название компании" required>
+                            <div class="error-message" id="companyError"></div>
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="Email" required>
+                            <div class="error-message" id="emailError"></div>
                         </div>
                         <div class="form-group">
                             <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+                            <div class="error-message" id="phoneError"></div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
@@ -321,6 +326,7 @@
                                     <option value="cafeteria">Организация столовой</option>
                                     <option value="both">Нужны оба варианта</option>
                                 </select>
+                                <div class="error-message" id="serviceError"></div>
                             </div>
                             <div class="form-group">
                                 <input type="number" id="employees" name="employees" placeholder="Количество сотрудников" min="1">
@@ -328,6 +334,7 @@
                         </div>
                         <div class="form-group">
                             <textarea id="message" name="message" placeholder="Дополнительная информация" required></textarea>
+                            <div class="error-message" id="messageError"></div>
                         </div>
                         <button type="submit" class="btn btn-primary">Отправить заявку</button>
                     </form>
@@ -351,6 +358,7 @@
                         <li><a href="#services">Услуги</a></li>
                         <li><a href="#menu">Меню</a></li>
                         <li><a href="#contact">Контакты</a></li>
+                        <li><a href="#" class="feedback-link">Обратная связь</a></li>
                     </ul>
                 </div>
             </div>
@@ -364,6 +372,48 @@
     <a href="tel:+74922123456" class="quick-call">
         <i class="fas fa-phone"></i>
     </a>
+
+    <!-- Модальное окно обратной связи -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Обратная связь</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <input type="text" id="feedbackName" name="name" placeholder="Ваше имя" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="feedbackCompany" name="company" placeholder="Название организации">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="feedbackPhone" name="phone" placeholder="Телефон" required>
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="feedbackEmail" name="email" placeholder="Email" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="feedbackMessage" name="message" placeholder="Ваш комментарий"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="feedbackSubmit" disabled>Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомление об успешной отправке -->
+    <div class="success-notification" id="successNotification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <p>Спасибо! Ваша заявка успешно отправлена.</p>
+            <button class="notification-close" id="notificationClose">&times;</button>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="script.js"></script>

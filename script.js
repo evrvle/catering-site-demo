@@ -81,42 +81,129 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Contact Form Submission
-    const contactForm = document.getElementById('contactForm');
+    // ===== Валидация форм и обработка отправки =====
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                employees: document.getElementById('employees').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Validate form
-            if (!formData.name || !formData.company || !formData.email || !formData.phone || !formData.service) {
-                alert('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-            
-            // Here you would normally send the data to a server
-            // For demonstration, we'll just show an alert
-            alert(`Спасибо за заявку, ${formData.name}! Мы свяжемся с вами в ближайшее время для обсуждения организации питания в компании "${formData.company}".`);
-            
-            // Reset form
-            contactForm.reset();
-        });
+    // Функция валидации номера телефона
+    function validatePhone(phoneInput, errorElement) {
+        const phoneValue = phoneInput.value.trim();
+        const phoneRegex = /^[0-9+\-()\s]*$/;
+        
+        if (!phoneRegex.test(phoneValue)) {
+            showError(phoneInput, errorElement, 'Пожалуйста, введите только цифры');
+            return false;
+        } else if (phoneValue.replace(/\D/g, '').length < 10) {
+            showError(phoneInput, errorElement, 'Номер телефона должен содержать минимум 10 цифр');
+            return false;
+        } else {
+            clearError(phoneInput, errorElement);
+            return true;
+        }
     }
     
-    // Phone number formatting
+    // Функция валидации email
+    function validateEmail(emailInput, errorElement) {
+        const emailValue = emailInput.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(emailValue)) {
+            showError(emailInput, errorElement, 'Пожалуйста, введите корректный email');
+            return false;
+        } else {
+            clearError(emailInput, errorElement);
+            return true;
+        }
+    }
+    
+    // Функция валидации обязательных полей
+    function validateRequired(input, errorElement, message = 'Это поле обязательно для заполнения') {
+        if (!input.value.trim()) {
+            showError(input, errorElement, message);
+            return false;
+        } else {
+            clearError(input, errorElement);
+            return true;
+        }
+    }
+    
+    // Функция отображения ошибки
+    function showError(input, errorElement, message) {
+        input.classList.add('error');
+        errorElement.textContent = message;
+        errorElement.classList.add('active');
+    }
+    
+    // Функция очистки ошибки
+    function clearError(input, errorElement) {
+        input.classList.remove('error');
+        errorElement.textContent = '';
+        errorElement.classList.remove('active');
+    }
+    
+    // Функция проверки валидности формы
+    function validateForm(form) {
+        let isValid = true;
+        
+        // Проверяем все обязательные поля
+        form.querySelectorAll('[required]').forEach(field => {
+            const fieldName = field.name;
+            const errorElement = document.getElementById(fieldName + 'Error') || 
+                                field.parentElement.querySelector('.error-message');
+            
+            if (field.type === 'tel') {
+                if (!validatePhone(field, errorElement)) {
+                    isValid = false;
+                }
+            } else if (field.type === 'email') {
+                if (!validateEmail(field, errorElement)) {
+                    isValid = false;
+                }
+            } else {
+                if (!validateRequired(field, errorElement)) {
+                    isValid = false;
+                }
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Функция для отображения уведомления
+    function showNotification(message) {
+        const notification = document.getElementById('successNotification');
+        const notificationText = document.querySelector('.notification-content p');
+        
+        // Устанавливаем текст уведомления в зависимости от переданного сообщения
+        if (notificationText) {
+            notificationText.textContent = message;
+        }
+        
+        notification.classList.add('active');
+        
+        // Автоматически скрыть уведомление через 5 секунд
+        setTimeout(() => {
+            notification.classList.remove('active');
+        }, 5000);
+    }
+    
+    // ===== Обработка основной формы контакта =====
+    const contactForm = document.getElementById('contactForm');
     const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
+    
+    if (contactForm && phoneInput) {
+        // Добавляем элемент для сообщения об ошибке, если его нет
+        if (!document.getElementById('phoneError')) {
+            const errorElement = document.createElement('div');
+            errorElement.id = 'phoneError';
+            errorElement.className = 'error-message';
+            phoneInput.parentElement.appendChild(errorElement);
+        }
+        
+        // Валидация телефона при вводе
+        phoneInput.addEventListener('input', function() {
+            validatePhone(this, document.getElementById('phoneError'));
+        });
+        
+        // Форматирование телефона
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 0) {
@@ -127,11 +214,177 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.target.value = !matches[2] ? '+7 (' + matches[1] : '+7 (' + matches[1] + ') ' + matches[2] + (matches[3] ? '-' + matches[3] : '') + (matches[4] ? '-' + matches[4] : '');
             }
         });
+        
+        // Обработка отправки формы
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm(contactForm)) {
+                // Данные для отправки на сервер (в реальной ситуации)
+                const formData = {
+                    name: document.getElementById('name').value,
+                    company: document.getElementById('company').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    service: document.getElementById('service').value,
+                    employees: document.getElementById('employees').value,
+                    message: document.getElementById('message').value
+                };
+                
+                // В реальном проекте здесь был бы AJAX-запрос к серверу
+                console.log('Данные формы контакта:', formData);
+                
+                // Показываем уведомление об успешной отправке с соответствующим сообщением
+                showNotification('Спасибо! Мы свяжемся с Вами.');
+                
+                // Сбрасываем форму
+                contactForm.reset();
+            }
+        });
+    }
+    
+    // ===== Модальное окно и форма обратной связи =====
+    const feedbackBtn = document.getElementById('feedbackBtn');
+    const feedbackModal = document.getElementById('feedbackModal');
+    const modalClose = document.getElementById('modalClose');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackSubmit = document.getElementById('feedbackSubmit');
+    const feedbackPhone = document.getElementById('feedbackPhone');
+    const feedbackName = document.getElementById('feedbackName');
+    const feedbackEmail = document.getElementById('feedbackEmail');
+    const notificationClose = document.getElementById('notificationClose');
+    const feedbackLink = document.querySelector('.feedback-link');
+    
+    // Открытие модального окна
+    if (feedbackBtn && feedbackModal) {
+        feedbackBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            feedbackModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+        });
+    }
+    
+    // Открытие модального окна через футер-ссылку
+    if (feedbackLink && feedbackModal) {
+        feedbackLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            feedbackModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    // Закрытие модального окна
+    if (modalClose && feedbackModal) {
+        modalClose.addEventListener('click', function() {
+            feedbackModal.classList.remove('active');
+            document.body.style.overflow = ''; // Восстанавливаем прокрутку страницы
+        });
+        
+        // Закрытие при клике на оверлей
+        feedbackModal.addEventListener('click', function(e) {
+            if (e.target === feedbackModal) {
+                feedbackModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Закрытие уведомления
+    if (notificationClose) {
+        notificationClose.addEventListener('click', function() {
+            document.getElementById('successNotification').classList.remove('active');
+        });
+    }
+    
+    // Валидация формы обратной связи
+    if (feedbackForm && feedbackSubmit) {
+        const requiredFields = feedbackForm.querySelectorAll('[required]');
+        
+        // Функция проверки разблокировки кнопки отправки
+        function checkFormValidity() {
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                } else if (field.type === 'tel' && !/^[0-9+\-()\s]*$/.test(field.value)) {
+                    isValid = false;
+                } else if (field.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+                    isValid = false;
+                }
+            });
+            
+            feedbackSubmit.disabled = !isValid;
+        }
+        
+        // Валидация каждого поля при вводе
+        requiredFields.forEach(field => {
+            field.addEventListener('input', function() {
+                if (field.type === 'tel') {
+                    validatePhone(field, document.getElementById('phoneError'));
+                } else if (field.type === 'email') {
+                    validateEmail(field, document.getElementById('emailError'));
+                } else {
+                    validateRequired(field, document.getElementById('nameError'));
+                }
+                
+                checkFormValidity();
+            });
+        });
+        
+        // Форматирование телефона в форме обратной связи
+        if (feedbackPhone) {
+            feedbackPhone.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value[0] === '7' || value[0] === '8') {
+                        value = value.substring(1);
+                    }
+                    const matches = value.match(/(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+                    e.target.value = !matches[2] ? '+7 (' + matches[1] : '+7 (' + matches[1] + ') ' + matches[2] + (matches[3] ? '-' + matches[3] : '') + (matches[4] ? '-' + matches[4] : '');
+                }
+                
+                validatePhone(this, document.getElementById('phoneError'));
+                checkFormValidity();
+            });
+        }
+        
+        // Обработка отправки формы обратной связи
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm(feedbackForm)) {
+                // Данные для отправки на сервер (в реальной ситуации)
+                const formData = {
+                    name: feedbackName.value,
+                    company: document.getElementById('feedbackCompany').value,
+                    email: feedbackEmail.value,
+                    phone: feedbackPhone.value,
+                    message: document.getElementById('feedbackMessage').value
+                };
+                
+                // В реальном проекте здесь был бы AJAX-запрос к серверу
+                console.log('Данные формы обратной связи:', formData);
+                
+                // Закрываем модальное окно
+                feedbackModal.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Показываем уведомление об успешной отправке с соответствующим сообщением
+                showNotification('Спасибо! Ваша обратная связь очень важна для нас.');
+                
+                // Сбрасываем форму
+                feedbackForm.reset();
+                feedbackSubmit.disabled = true;
+            }
+        });
     }
     
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') return; // Пропускаем, если это кнопка обратной связи
+            
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
