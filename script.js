@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     
+    // Анимация для кнопки отзывов на Яндекс Картах
+    const reviewsLink = document.querySelector('.reviews-link');
+    if (reviewsLink) {
+        setTimeout(() => {
+            reviewsLink.classList.add('pulse-animation');
+            setTimeout(() => {
+                reviewsLink.classList.remove('pulse-animation');
+            }, 2000);
+        }, 2000);
+    }
+    
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
