@@ -56,39 +56,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Testimonials Slider (Simple Version)
     const testimonials = document.querySelectorAll('.testimonial');
-    let currentTestimonial = 0;
     
-    function showTestimonials() {
-        // For screens smaller than 768px, show only one testimonial at a time
-        if (window.innerWidth < 768 && testimonials.length > 1) {
-            testimonials.forEach((testimonial, index) => {
-                if (index === currentTestimonial) {
-                    testimonial.style.display = 'block';
-                } else {
-                    testimonial.style.display = 'none';
-                }
-            });
-            
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            setTimeout(showTestimonials, 5000); // Change testimonial every 5 seconds
-        }
+    // Убираем автоматическое переключение отзывов
+    // Теперь все отзывы будут видимы в горизонтальном скролле
+    function setupTestimonials() {
+        // Убедимся, что все отзывы видимы
+        testimonials.forEach(testimonial => {
+            testimonial.style.display = 'block';
+        });
     }
     
     if (testimonials.length > 1) {
-        // Initial check
-        if (window.innerWidth < 768) {
-            showTestimonials();
-        }
+        setupTestimonials();
         
-        // Check on resize
+        // Проверяем при изменении размера окна
         window.addEventListener('resize', () => {
-            if (window.innerWidth < 768) {
-                showTestimonials();
-            } else {
-                testimonials.forEach(testimonial => {
-                    testimonial.style.display = 'block';
-                });
-            }
+            setupTestimonials();
         });
     }
     
