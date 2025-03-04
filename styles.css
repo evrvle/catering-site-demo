@@ -102,13 +102,17 @@ img {
 
 .btn {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 12px 25px;
     border-radius: 30px;
     font-weight: 500;
     text-align: center;
     cursor: pointer;
     transition: var(--transition);
     border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
 }
 
 .btn-primary {
@@ -598,14 +602,16 @@ img {
 }
 
 input,
+select,
 textarea {
+    display: block;
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    transition: var(--transition);
+    font-size: 1rem;
 }
 
 input:focus,
@@ -617,6 +623,40 @@ textarea:focus {
 textarea {
     min-height: 150px;
     resize: vertical;
+}
+
+/* Современный стиль для select */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23e67e22' viewBox='0 0 16 16'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    background-size: 12px;
+    padding-right: 40px;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:hover {
+    border-color: var(--primary-color);
+}
+
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.2);
+    outline: none;
+}
+
+/* Стиль для опций */
+select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+select option:hover, select option:focus {
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 /* Footer */
@@ -987,28 +1027,6 @@ textarea {
         scroll-snap-type: x mandatory;
         scroll-padding: 1rem;
         position: relative;
-    }
-    
-    .testimonials-slider::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        width: 35px;
-        height: 35px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232c5282' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 15px;
-        z-index: 1;
     }
     
     .testimonial {
